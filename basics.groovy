@@ -1,7 +1,7 @@
 // Execute Groovy script:
 // groovy basics.groovy
 
-// Just like java code can be in main()
+// Just like in java code can be in main()
 // But it can also be outside classes like Python script
 
 class GroovyBasics {
@@ -54,6 +54,14 @@ class GroovyBasics {
         Math.round(2.49);
         Math.min(2, 3);
         Math.max(2, 3);
+
+        // Logical operators
+        1 == 2
+        1 != 2
+        1 > 2
+        1 < 2
+        true && true        // AND
+        true || false       // OR
 
         // Random
         new Random().nextInt() % 10
