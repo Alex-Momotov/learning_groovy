@@ -62,6 +62,7 @@ M1['name']
 M1.get('fav_numbers')
 
 // Adding new value
+M1['language'] = 'english'
 M1.put(7, 'Seven')
 
 // Contains key

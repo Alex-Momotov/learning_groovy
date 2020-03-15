@@ -104,9 +104,9 @@ class GroovyBasics {
         def n2 = '123'.concat("321")
         def n3 = 'Abc' * 5
 
-        // String - remove substring
+        // String - remove first occurring substring
         def b2 = "What is your name?"
-        b2 - "What is "
+        b2 - " "
 
         // String - split
         def b3 = "How are you, Maggie?"
@@ -116,6 +116,7 @@ class GroovyBasics {
         // String - Replace all
         def b4 = "A n B n C"
         b4.replaceAll('n', '+')
+
 
     }
 

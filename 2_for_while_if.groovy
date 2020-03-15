@@ -34,8 +34,17 @@ for (i = 0; i < 10; ++i) {
     println(i);
 }
 
+// Looping through list java style need to declare type of i
+for (int i : [1, 2, 3])
+    println(i)
+
 // Looping through range
 for (i in 0..10) {
+    println(i);
+}
+
+// Looping through range - java style
+for (int i : 0..10) {
     println(i);
 }
 
