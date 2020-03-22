@@ -59,6 +59,11 @@ def f = {x -> x.length()}
 f instanceof Closure
 
 //----------------------------------------------------------------------------------------------------------------------
+//      Return type
+// Optionally, you can specify the return type of the closure by using the generic type of Closure
+Closure<Boolean> cl = {it + 5}
+
+//----------------------------------------------------------------------------------------------------------------------
 //      call()
 // Can call a clusure using .call()
 def cl1 = {it + 5}
@@ -67,6 +72,15 @@ cl1.call(5)
 // Lambda recursion - Use keyword 'call' to refer to the closure itself
 def factorial = {num -> num == 1 ? 1 : num * call(num - 1)}
 factorial(4)
+
+//----------------------------------------------------------------------------------------------------------------------
+//      Varargs
+def sum = {int... nums ->
+    def total = 0
+    for (i in nums) total += i
+    total
+}
+sum(1, 2, 3)
 
 //----------------------------------------------------------------------------------------------------------------------
 //      Closure as parameter
@@ -91,6 +105,21 @@ L3 = processList(['a', 'b', 'c'], {it.toUpperCase()})
 L4 = processList(['a', 'b', 'c']) {it.toUpperCase()}
 
 //----------------------------------------------------------------------------------------------------------------------
+//      Nested closures
+def timed = {function ->
+    def inner = {
+        before = System.currentTimeMillis();
+        function()
+        println "Function finished in ${System.currentTimeMillis() - before}"
+    }
+    return inner
+}
+time_sleep = timed {
+    Thread.sleep(1000)
+}
+time_sleep()
+
+//----------------------------------------------------------------------------------------------------------------------
 //      Closure vs method
 // Method
 def formatToLowerCase(name) {
@@ -103,3 +132,39 @@ def formatToLowerCaseClosure = { name ->
 }
 
 //----------------------------------------------------------------------------------------------------------------------
+//      Closures in strings
+// Normally, embedded str value is captured and the resulting string will not be changed if the captured var is changed.
+name = "Nicola"
+greeting = "Welcome ${name}!"
+
+name = "Divya"
+greeting
+
+// The syntax ${-> varName} evaluates the embedded variable's value each time before evaluating the string itself.
+name = "Yuliia"
+greeting2 = "Welcome ${-> name}"
+
+name = "Yannick"
+greeting2
+
+//----------------------------------------------------------------------------------------------------------------------
+//      Closures in collections
+
+// each(Closure cl)
+// Performs an operation on each element
+def L = [1, 2, 3, 4, 5, 6]
+L.each {println it}
+
+// findAll(Closure cl)
+// Returns a subset of collection, conforming to a given predicate
+def L2 = [1, 2, 3, 4, 5, 6]
+L2.findAll {it instanceof Integer && it % 2 == 0}
+
+// collect(Closure cl)
+// Transforms each element
+def L3 = [1, 2, 3, 4, 5, 6]
+L4 = L3.collect {it * 2}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
