@@ -1,9 +1,9 @@
 //----------------------------------------------------------------------------------------------------------------------
 //      Reminder Java lambdas
 // Function<String, Integer> f = s -> s.length();
-// Function<String, Integer> f = (String s) -> s.length();          lambda args can optionally be in parenthesis is 1 arg
+// Function<String, Integer> f = (String s) -> s.length();          lambda args can optionally be in parenthesis
 // Function<..... > f = (String s, Integer n) -> s * n;
-// Function<..... > f = (String s, Integer n) -> {return s * n};    lambda body can optionally be in curly braces in 1 statement
+// Function<..... > f = (String s, Integer n) -> {return s * n};    lambda body can optionally be in curly braces
 
 //----------------------------------------------------------------------------------------------------------------------
 //      Closure Theory
@@ -61,7 +61,9 @@ f instanceof Closure
 //----------------------------------------------------------------------------------------------------------------------
 //      Return type
 // Optionally, you can specify the return type of the closure by using the generic type of Closure
-Closure<Boolean> cl = {it + 5}
+
+Closure<Integer> cl = {it + 5}
+cl 3
 
 //----------------------------------------------------------------------------------------------------------------------
 //      call()
@@ -84,13 +86,11 @@ sum(1, 2, 3)
 
 //----------------------------------------------------------------------------------------------------------------------
 //      Closure as parameter
-def func(Closure cl) {
-    for (val in cl.properties)
-        println(" $val.key :$val.value ")
+def func(Closure numGenerator) {
+    println "the num is " + numGenerator()
 }
 func {
-    group = 'com.nexmo'
-    version = '1.0.4'
+    Random.newInstance().nextInt()
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -102,7 +102,7 @@ def processList(list, Closure cl) {
     return result
 }
 L3 = processList(['a', 'b', 'c'], {it.toUpperCase()})
-L4 = processList(['a', 'b', 'c']) {it.toUpperCase()}
+
 
 //----------------------------------------------------------------------------------------------------------------------
 //      Nested closures
